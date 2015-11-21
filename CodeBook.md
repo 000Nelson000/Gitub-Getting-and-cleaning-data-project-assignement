@@ -1,5 +1,5 @@
 # Code Book for the script 'run_analysis.R'
-Generated 2015-11-21 18:27:34 during the script excution
+Generated 2015-11-21 18:31:06 during the script excution
 
 ## Actions performed on data:
 
@@ -28,10 +28,10 @@ Note: A column names aux_source (equal to 'train' or 'test') was included so we 
 * Getting a vector with columns names of interest
 * Creating a nesw data set,dt_2, containing only the columns of interest
 * Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a nes column for the new column names ('new')
-* Changing the column names according with the folowing set of rules:
+*** Changing the column names according with the folowing set of rules:
 
-* Start with t-->Time
-* Start with f-->Frequency
+*** Start with t-->Time
+*** Start with f-->Frequency
 * acc-->Accelerometer
 * Gyro-->Gyroscope
 * BodyBody-->Body
