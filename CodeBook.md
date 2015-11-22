@@ -1,5 +1,5 @@
 # Code Book for the script 'run_analysis.R'
-Generated 2015-11-22 01:48:31 during the script excution
+Generated 2015-11-22 01:50:12 during the script excution
 
 ## Actions performed on data:
 
