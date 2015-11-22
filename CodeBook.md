@@ -1,26 +1,38 @@
-# Code Book for the script 'run_analysis.R'
-Generated 2015-11-22 17:40:36 during the script excution
-
 ## Actions performed on data:
 
 Load data.table package
 *Read files using the fread function from data.table package : 
 
-*Files to be read:
-*activity_labels.txt
-*features.txt
-*features_info.txt
-*README.txt
-*train\X_train.txt
-*train\Y_train.txt
-*train\Subject_train.txt
-*test\X_test.txt
-*test\Y_test.txt
-*test\Subject_test.txt
-Get the column names for the X(train and test) files, matching with features file
-Note: The 'V' was removed from the column  names before matching
-* Setting the Y files column names to 'Target'
-* Binding the train/test data sets (X,Y,Subject) into a single data set
+*Files to be read: 
+
+*activity_labels.txt 
+
+*features.txt 
+
+*features_info.txt 
+
+*README.txt 
+
+*train\X_train.txt 
+
+*train\Y_train.txt 
+
+*train\Subject_train.txt 
+
+*test\X_test.txt 
+
+*test\Y_test.txt 
+
+*test\Subject_test.txt 
+
+Get the column names for the X(train and test) files, matching with features file 
+
+*Note: The 'V' was removed from the column  names before matching 
+
+* Setting the Y files column names to 'Target' 
+
+* Binding the train/test data sets (X,Y,Subject) into a single data set 
+
 Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from 
 * Binding the train/test full data sets into a single data set (dt)
 * Store the dt's colum names into a vector names aux_names
