@@ -282,6 +282,21 @@ f_codebook("Variable name       | Desription")
 f_codebook("--------------------|------------")
 
 
+aux_summary_cols<-names(aux_summary)
+# str(aux_summary)
+
+for(col in aux_summary_cols){
+  f_codebook("`",col,"`   | Average value for this column,",class(aux_summary[,col])," range ,"
+          ,cat(range(aux_summary[,col]),sep=" : ")
+             )
+  }
+# class(aux_summary[,TimeBodyAccelerometerMeanX])
+# 
+# names(aux_summary[,"Target_activity",with=FALSE])
+# class(aux_summary$TimeBodyAccelerometerMeanX)
+# cat(range(aux_summary$TimeBodyAccelerometerMeanX),sep=" : ")
+
+
 f_codebook("* key columns: \n")
 f_codebook("Variable name       | Desription")
 f_codebook("--------------------|------------")
