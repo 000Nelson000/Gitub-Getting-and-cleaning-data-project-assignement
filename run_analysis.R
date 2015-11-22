@@ -263,7 +263,7 @@ f_codebook("* Calculating the mean for each variable stores in the vector 'colst
 aux_summary<-dt_2[,lapply(.SD,mean),by=c("Target_activity","Subject")]
 # dt_resumo<-dt_2[,lapply(.SD,mean,.SDCols=colstoagg),by=c("Target_activity","Subject")]
 
-f_codebook("* Write the data set 'aux_summary' into the 'TidyDataSet.txt' file ")
+f_codebook("* Write the data set 'aux_summary' into the 'TidyDataSet.txt' file  - ",nrow(aux_summary)," x ",ncol(aux_summary))
 write.table(x=aux_summary,file="TidyDataSet.txt",row.names = FALSE)
 
 
@@ -283,13 +283,36 @@ f_codebook("--------------------|------------")
 
 
 aux_summary_cols<-names(aux_summary)
+aux_summary_cols<-gsub('"','',aux_summary_cols)
+
+# gsub('"','',col)
+# gsub('"','',deparse(col))
 # str(aux_summary)
 
-for(col in aux_summary_cols){
-  f_codebook("`",col,"`   | Average value for this column,",class(aux_summary[,col])," range ,"
-          ,cat(range(aux_summary[,col]),sep=" : ")
-             )
-  }
+
+class(
+unlist(lapply(aux_summary,class))
+)
+
+aux_summary<-data.frame(aux_summary)
+
+str(aux_summary)
+
+class(aux_summary[,1])
+class(aux_summary[,2])
+range(aux_summary[,1])
+range(aux_summary[,2])
+# for(col in aux_summary_cols){
+for (i in 1:length(aux_summary_cols)){
+f_codebook(
+  "`",aux_summary_cols[i]
+  ,"`   | Average value for this column,",class(data.frame(aux_summary)[,i]) ,cat(range(data.frame(aux_summary)[,i]),sep=" : ")
+  
+)
+}
+
+# xxx<-range(aux_summary[,i,with=FALSE])
+
 # class(aux_summary[,TimeBodyAccelerometerMeanX])
 # 
 # names(aux_summary[,"Target_activity",with=FALSE])
@@ -297,13 +320,13 @@ for(col in aux_summary_cols){
 # cat(range(aux_summary$TimeBodyAccelerometerMeanX),sep=" : ")
 
 
-f_codebook("* key columns: \n")
-f_codebook("Variable name       | Desription")
-f_codebook("--------------------|------------")
-
-f_codebook("* Non Key columns:\n ")
-f_codebook("Variable name       | Desription")
-f_codebook("--------------------|------------")
+# f_codebook("* key columns: \n")
+# f_codebook("Variable name       | Desription")
+# f_codebook("--------------------|------------")
+# 
+# f_codebook("* Non Key columns:\n ")
+# f_codebook("Variable name       | Desription")
+# f_codebook("--------------------|------------")
 
 # aux_names_2[grep("^t",aux_names_2)]
 # 
