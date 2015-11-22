@@ -5,26 +5,16 @@ Load data.table package
 
 * Files to be read: 
 
-* activity_labels.txt 
-
-* features.txt 
-
-* features_info.txt 
-
-* README.txt 
-
-* train\X_train.txt 
-
-* train\Y_train.txt 
-
-* train\Subject_train.txt 
-
-* test\X_test.txt 
-
-* test\Y_test.txt 
-
-* test\Subject_test.txt 
-
+* activity_labels.txt
+* features.txt
+* features_info.txt
+* README.txt
+* train\X_train.txt
+* train\Y_train.txt
+* train\Subject_train.txt
+* test\X_test.txt
+* test\Y_test.txt
+* test\Subject_test.txt
 Get the column names for the X(train and test) files, matching with features file 
 
 *Note: The 'V' was removed from the column  names before matching 

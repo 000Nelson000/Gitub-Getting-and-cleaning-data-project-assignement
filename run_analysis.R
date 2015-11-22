@@ -44,7 +44,7 @@ data_path<-".\\data"
 f_codebook("Downlaod zip file to the working directory if flag_download_zip_file =TRUE")
 force_overwrite<-FALSE
 ##If TRUE the zip file will be downloaded
-f_codebook("Extract the content of the zip file  `",zip_file_url,  "`to the folder" ,data_path "`,if flag_extract_data_from_zip_file=TRUE")
+f_codebook("Extract the content of the zip file  `",zip_file_url,  "`to the folder" ,data_path, "`,if flag_extract_data_from_zip_file=TRUE")
 flag_download_zip_file<-FALSE
 ## IF TRUE the content of th zip file will be extracted
 flag_extract_data_from_zip_file<-FALSE
@@ -90,18 +90,18 @@ library(data.table)
 f_codebook("* Read files using the fread function from data.table package :"," \n")
 
 f_codebook("* Files to be read:"," \n")
-f_codebook("* activity_labels.txt"," \n")
-f_codebook("* features.txt"," \n")
-f_codebook("* features_info.txt"," \n")
-f_codebook("* README.txt"," \n")
+f_codebook("* activity_labels.txt")
+f_codebook("* features.txt")
+f_codebook("* features_info.txt")
+f_codebook("* README.txt")
 
-f_codebook("* train\\X_train.txt"," \n")
-f_codebook("* train\\Y_train.txt"," \n")
-f_codebook("* train\\Subject_train.txt"," \n")
+f_codebook("* train\\X_train.txt")
+f_codebook("* train\\Y_train.txt")
+f_codebook("* train\\Subject_train.txt")
 
-f_codebook("* test\\X_test.txt"," \n")
-f_codebook("* test\\Y_test.txt"," \n")
-f_codebook("* test\\Subject_test.txt"," \n")
+f_codebook("* test\\X_test.txt")
+f_codebook("* test\\Y_test.txt")
+f_codebook("* test\\Subject_test.txt")
 
 
 activity_labels<-fread(input =".\\data\\UCI HAR Dataset\\activity_labels.txt",header=F)
