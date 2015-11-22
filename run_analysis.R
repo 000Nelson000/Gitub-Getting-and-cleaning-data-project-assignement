@@ -189,16 +189,51 @@ mean_std_features<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names,ignore.case 
 f_codebook("* Create a column names Target_activity containing the activity descriptions")
 dt$Target_activity<-activity_labels[match (dt$Target,activity_labels$V1),V2]
 
+
+# f_codebook("* `dt` data set columns: \n")
+# f_codebook("Variable name       | Desription")
+# f_codebook("--------------------|------------")
+# 
+# for (i in 1:length(names(dt))){
+#   f_codebook(
+#     "`",names(dt)[i]
+#     ,"`   | Average value for this column,",class(data.frame(dt)[,i]) 
+#     # ," range :  from ",paste(as.character(range(data.frame(aux_summary)[,i])),sep="  to ")
+#     
+#   )
+# }
+
+
+
 f_codebook("* Getting a vector with columns names of interest")
 interest_features<-c(mean_std_features,"Target_activity","Subject")
 
 f_codebook("* Creating a nesw data set,dt_2, containing only the columns of interest")
 dt_2<-dt[,interest_features,with=FALSE]
 
+
+
+# f_codebook("* `dt_2` data set columns: \n")
+# f_codebook("Variable name       | Desription")
+# f_codebook("--------------------|------------")
+# 
+# 
+# 
+# for (i in 1:length(names(dt_2))){
+#   f_codebook(
+#     "`",names(dt_2)[i]
+#     ,"`   | Average value for this column,",class(data.frame(dt_2)[,i]) 
+#     # ," range :  from ",paste(as.character(range(data.frame(aux_summary)[,i])),sep="  to ")
+#     
+#   )
+# }
+
+
+
 # names(dt)
 # names(dt_2)
 
-f_codebook("* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a nes column for the new column names ('new')")
+f_codebook("* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a new column for the new column names ('new')") 
 
 aux_names_2<-data.frame(cbind(actual=names(dt_2),new=names(dt_2)))
 aux_names_2$actual<-as.character(aux_names_2$actual)
@@ -277,77 +312,23 @@ head(check_file)
 
 
 
-f_codebook("* Final columns: \n")
+f_codebook("* `TidyDataSet.txt` / 'tidydata'  final columns: \n")
 f_codebook("Variable name       | Desription")
 f_codebook("--------------------|------------")
 
 
-aux_summary_cols<-names(aux_summary)
-aux_summary_cols<-gsub('"','',aux_summary_cols)
+# aux_summary_cols<-names(aux_summary)
+# aux_summary_cols<-gsub('"','',aux_summary_cols)
 
-# gsub('"','',col)
-# gsub('"','',deparse(col))
-# str(aux_summary)
-
-
-class(
-unlist(lapply(aux_summary,class))
-)
-
-aux_summary<-data.frame(aux_summary)
-
-str(aux_summary)
-
-class(aux_summary[,1])
-class(aux_summary[,2])
-range(aux_summary[,1])
-range(aux_summary[,2])
-# for(col in aux_summary_cols){
-for (i in 1:length(aux_summary_cols)){
+for (i in 1:length(names(aux_summary))){
 f_codebook(
-  "`",aux_summary_cols[i]
-  ,"`   | Average value for this column,",class(data.frame(aux_summary)[,i]) ,cat(range(data.frame(aux_summary)[,i]),sep=" : ")
+  "`",names(aux_summary)[i]
+  ,"`   | Average value for this column,",class(data.frame(aux_summary)[,i]) 
+  # ," range :  from ",paste(as.character(range(data.frame(aux_summary)[,i])),sep="  to ")
   
 )
 }
 
-# xxx<-range(aux_summary[,i,with=FALSE])
-
-# class(aux_summary[,TimeBodyAccelerometerMeanX])
-# 
-# names(aux_summary[,"Target_activity",with=FALSE])
-# class(aux_summary$TimeBodyAccelerometerMeanX)
-# cat(range(aux_summary$TimeBodyAccelerometerMeanX),sep=" : ")
-
-
-# f_codebook("* key columns: \n")
-# f_codebook("Variable name       | Desription")
-# f_codebook("--------------------|------------")
-# 
-# f_codebook("* Non Key columns:\n ")
-# f_codebook("Variable name       | Desription")
-# f_codebook("--------------------|------------")
-
-# aux_names_2[grep("^t",aux_names_2)]
-# 
-# txt<-c("fscfvdf")
-# gsub("^f","zzz",txt)
-# 
-# 
-# gsub("^f","zzz",aux_names_2)
-# ?gsub
-# table(full$Target,full$target_activity)
-# activity_labels
-# unique(paste(full$Target,full$Target_activity,sep=":"))
-
-
-# aux_names[grep("mean|std" ,aux_names)]
-
-# aux_names[grep("mean\\(\\)$|std\\(\\)$" ,aux_names)]
-
-
-# a<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names)]
-# b<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names)]
 
 github_path<-"C:\\Users\\nmota\\Documents\\Dropbox\\Data Mining\\GitHub\\GitHub\\Gitub-Getting-and-cleaning-data-project-assignement"
 

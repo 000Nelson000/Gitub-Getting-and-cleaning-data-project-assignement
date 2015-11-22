@@ -30,7 +30,7 @@ Note: A column names aux_source (equal to 'train' or 'test') was included so we 
 * Create a column names Target_activity containing the activity descriptions
 * Getting a vector with columns names of interest
 * Creating a nesw data set,dt_2, containing only the columns of interest
-* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a nes column for the new column names ('new')
+* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a new column for the new column names ('new')
 * Changing the column names according with the folowing set of rules:
 
 ### Repace applied to column names
@@ -53,7 +53,7 @@ Start with 'f'      | 'Frequency'
 * Write the data set 'aux_summary' into the 'TidyDataSet.txt' file  - 180 x 68
 * Check if the 'TidyDataSet.txt' file exists and is readable
 * Check if the 'TidyDataSet.txt'  has  the expected structure, calling the head function 
-* Final columns: 
+* `TidyDataSet.txt` / 'tidydata'  final columns: 
 
 Variable name       | Desription
 --------------------|------------
