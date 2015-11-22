@@ -87,21 +87,21 @@ library(data.table)
 
 # X_train<-read.table(".\\train\\X_train.txt",header = F,)
 
-f_codebook("*Read files using the fread function from data.table package :"," \n")
+f_codebook("* Read files using the fread function from data.table package :"," \n")
 
-f_codebook("*Files to be read:"," \n")
-f_codebook("*activity_labels.txt"," \n")
-f_codebook("*features.txt"," \n")
-f_codebook("*features_info.txt"," \n")
-f_codebook("*README.txt"," \n")
+f_codebook("* Files to be read:"," \n")
+f_codebook("* activity_labels.txt"," \n")
+f_codebook("* features.txt"," \n")
+f_codebook("* features_info.txt"," \n")
+f_codebook("* README.txt"," \n")
 
-f_codebook("*train\\X_train.txt"," \n")
-f_codebook("*train\\Y_train.txt"," \n")
-f_codebook("*train\\Subject_train.txt"," \n")
+f_codebook("* train\\X_train.txt"," \n")
+f_codebook("* train\\Y_train.txt"," \n")
+f_codebook("* train\\Subject_train.txt"," \n")
 
-f_codebook("*test\\X_test.txt"," \n")
-f_codebook("*test\\Y_test.txt"," \n")
-f_codebook("*test\\Subject_test.txt"," \n")
+f_codebook("* test\\X_test.txt"," \n")
+f_codebook("* test\\Y_test.txt"," \n")
+f_codebook("* test\\Subject_test.txt"," \n")
 
 
 activity_labels<-fread(input =".\\data\\UCI HAR Dataset\\activity_labels.txt",header=F)
