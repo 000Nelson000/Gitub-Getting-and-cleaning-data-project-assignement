@@ -25,12 +25,14 @@ Get the column names for the X(train and test) files, matching with features fil
 
 *   Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from 
 * Binding the train/test full data sets into a single data set (dt)
+*  `dt_2` data set:10299 x 564
 * Store the dt's colum names into a vector names aux_names
 * Getting a vector with the colum names containing mean() or std() :66 features
 * Create a column names Target_activity containing the activity descriptions
 * Getting a vector with columns names of interest
 * Creating a new data set,dt_2, containing only the columns of interest : Called from: cat(..., "\n", file = CodebookFilePath, append = TRUE, sep = "")
 * Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a new column for the new column names ('new')
+*  `dt_2` data set:10299 x 68
 * Changing the column names according with the folowing set of rules:
 
 ### Repace applied to column names
@@ -59,69 +61,69 @@ Variable name       | Desription
 --------------------|------------
 `Target_activity`   | Average value for this column,character
 `Subject`   | Average value for this column,integer
-`TimeBodyAccelerometerelerometerMeanX`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerMeanY`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerMeanZ`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerStdX`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerStdY`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerStdZ`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerMeanX`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerMeanY`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerMeanZ`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerStdX`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerStdY`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerStdZ`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkMeanX`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkMeanY`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkMeanZ`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkStdX`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkStdY`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkStdZ`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeMeanX`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeMeanY`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeMeanZ`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeStdX`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeStdY`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeStdZ`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkMeanX`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkMeanY`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkMeanZ`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkStdX`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkStdY`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkStdZ`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerMagMean`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerMagStd`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerMagMean`   | Average value for this column,numeric
-`TimeGravityAccelerometerelerometerMagStd`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkMagMean`   | Average value for this column,numeric
-`TimeBodyAccelerometerelerometerJerkMagStd`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeMagMean`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeMagStd`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkMagMean`   | Average value for this column,numeric
-`TimeBodyGyroscopescopeJerkMagStd`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerMeanX`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerMeanY`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerMeanZ`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerStdX`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerStdY`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerStdZ`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkMeanX`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkMeanY`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkMeanZ`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkStdX`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkStdY`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkStdZ`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeMeanX`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeMeanY`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeMeanZ`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeStdX`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeStdY`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeStdZ`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerMagMean`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerMagStd`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkMagMean`   | Average value for this column,numeric
-`FrequencyBodyAccelerometerelerometerJerkMagStd`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeMagMean`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeMagStd`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeJerkMagMean`   | Average value for this column,numeric
-`FrequencyBodyGyroscopescopeJerkMagStd`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerMeanX`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerMeanY`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerMeanZ`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerStdX`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerStdY`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerStdZ`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerMeanX`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerMeanY`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerMeanZ`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerStdX`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerStdY`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerStdZ`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkMeanX`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkMeanY`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkMeanZ`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkStdX`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkStdY`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkStdZ`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeMeanX`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeMeanY`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeMeanZ`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeStdX`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeStdY`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeStdZ`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkMeanX`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkMeanY`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkMeanZ`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkStdX`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkStdY`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkStdZ`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerMagMean`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerMagStd`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerMagMean`   | Average value for this column,numeric
+`TimeGravityAccelerometerelerometerelerometerMagStd`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkMagMean`   | Average value for this column,numeric
+`TimeBodyAccelerometerelerometerelerometerJerkMagStd`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeMagMean`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeMagStd`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkMagMean`   | Average value for this column,numeric
+`TimeBodyGyroscopescopescopeJerkMagStd`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerMeanX`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerMeanY`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerMeanZ`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerStdX`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerStdY`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerStdZ`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkMeanX`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkMeanY`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkMeanZ`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkStdX`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkStdY`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkStdZ`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeMeanX`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeMeanY`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeMeanZ`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeStdX`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeStdY`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeStdZ`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerMagMean`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerMagStd`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkMagMean`   | Average value for this column,numeric
+`FrequencyBodyAccelerometerelerometerelerometerJerkMagStd`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeMagMean`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeMagStd`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeJerkMagMean`   | Average value for this column,numeric
+`FrequencyBodyGyroscopescopescopeJerkMagStd`   | Average value for this column,numeric

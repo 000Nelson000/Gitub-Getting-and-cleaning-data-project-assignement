@@ -171,7 +171,7 @@ test<-cbind(X_test,Y_test,Subject=subject_test$V1,aux_source=c("Test"))
 f_codebook("* Binding the train/test full data sets into a single data set (dt)")
 dt<-rbind(train,test)
 # table(full[,aux_source])
-f_codebook("*  `dt_2` data set:", nrow(dt)," x " ncol(dt)) 
+f_codebook("*  `dt_2` data set:", nrow(dt)," x " ,ncol(dt)) 
 
 f_codebook("* Store the dt's colum names into a vector names aux_names")
 aux_names<-names(dt)
@@ -235,7 +235,7 @@ dt_2<-dt[,interest_features,with=FALSE]
 # names(dt_2)
 
 f_codebook("* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a new column for the new column names ('new')") 
-f_codebook("*  `dt_2` data set:" ,nrow(dt_2)," x " ncol(dt_2)) 
+f_codebook("*  `dt_2` data set:" ,nrow(dt_2)," x ", ncol(dt_2)) 
 
 
 aux_names_2<-data.frame(cbind(actual=names(dt_2),new=names(dt_2)))
