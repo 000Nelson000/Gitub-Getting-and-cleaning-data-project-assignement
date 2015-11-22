@@ -12,24 +12,16 @@
 ###Note: f_codebook calls should be interpreed as comments: These functon calls ar suposed to build the coodbook dynmically 
 
 
-
+cat("\14")
 setwd("C:\\Users\\nmota\\Documents\\Dropbox\\Data Mining\\R\\Coursera  - Getting and cleaning data\\Project")
       
 ##\\UCI HAR Dataset")
-getwd()
-dir()
-dir(".\\data\\UCI HAR Dataset\\train")
-dir(".\\data\\UCI HAR Dataset\\test")
+# getwd()
+# dir()
+# dir(".\\data\\UCI HAR Dataset\\train")
+# dir(".\\data\\UCI HAR Dataset\\test")
 
-flag_reset_coodebok<-TRUE
-flag_codebook_backup_old_file<-TRUE
 
-if (flag_reset_coodebok & file.exists(CodebookFilePath)) {
-  
-  if (flag_codebook_backup_old_file) file.rename(CodebookFilePath,paste0(".\\codebook","_backup_",gsub(":","_",gsub(" ","_",Sys.time())),".md"))
-  file.remove(CodebookFilePath)
-file.rename(".\\CodeBook.md",".\\CodeBook_backup.md")
-}
 ##path for the md file 
 CodebookFilePath<- ".\\CodeBook.md"
 ##Fuction that writes in a specific md file, each time we call it.
@@ -37,12 +29,54 @@ f_codebook <- function(...){
   cat(..., "\n",file=CodebookFilePath,append=TRUE, sep="")
 }
 
-
-
-
 f_codebook("# Code Book for the script 'run_analysis.R'")
 f_codebook("Generated ",as.character(Sys.time())," during the script excution")
 f_codebook("") 
+
+###################################################
+
+zip_file_url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+zip_file_destination<-"data.zip"
+
+data_path<-".\\data"
+
+#IF TRUE the directory will be deleted an recreated
+f_codebook("Downlaod zip file to the working directory if flag_download_zip_file =TRUE")
+force_overwrite<-FALSE
+##If TRUE the zip file will be downloaded
+f_codebook("Extract the content of the zip file  `",zip_file_url,  "`to the folder" ,data_path "`,if flag_extract_data_from_zip_file=TRUE")
+flag_download_zip_file<-FALSE
+## IF TRUE the content of th zip file will be extracted
+flag_extract_data_from_zip_file<-FALSE
+
+
+f_codebook("Drop and recreate the dstination folder if force_overwrite=TRUE")
+if(!file.exists(data_path) & force_overwrite){unlink(data_path,recursive=TRUE)}
+if(!file.exists(data_path)){
+    dir.create(data_path)
+}
+
+if(flag_download_zip_file){
+zip_file<-download.file(zip_file_url,zip_file_destination)
+}
+
+if (flag_extract_data_from_zip_file){
+unzip("data.zip",exdir = data_path)
+}
+
+###################################################
+flag_reset_coodebok<-TRUE
+flag_codebook_backup_old_file<-TRUE
+
+if (flag_reset_coodebok & file.exists(CodebookFilePath)) {
+  
+  if (flag_codebook_backup_old_file) file.rename(CodebookFilePath,paste0(".\\codebook","_backup_",gsub(":","_",gsub(" ","_",Sys.time())),".md"))
+  #file.remove(CodebookFilePath)
+  file.rename(".\\CodeBook.md",".\\CodeBook_backup.md")
+}
+
+
+
 
 
 f_codebook("## Actions performed on data:")
@@ -53,21 +87,21 @@ library(data.table)
 
 # X_train<-read.table(".\\train\\X_train.txt",header = F,)
 
-f_codebook("Read files using the fread function from data.table package")
+f_codebook("*Read files using the fread function from data.table package :"," \n")
 
-f_codebook("Files to be read:")
-f_codebook("activity_labels.txt")
-f_codebook("features.txt")
-f_codebook("features_info.txt")
-f_codebook("README.txt")
+f_codebook("*Files to be read:"," \n")
+f_codebook("*activity_labels.txt"," \n")
+f_codebook("*features.txt"," \n")
+f_codebook("*features_info.txt"," \n")
+f_codebook("*README.txt"," \n")
 
-f_codebook("train\\X_train.txt")
-f_codebook("train\\Y_train.txt")
-f_codebook("train\\Subject_train.txt")
+f_codebook("*train\\X_train.txt"," \n")
+f_codebook("*train\\Y_train.txt"," \n")
+f_codebook("*train\\Subject_train.txt"," \n")
 
-f_codebook("test\\X_test.txt")
-f_codebook("test\\Y_test.txt")
-f_codebook("test\\Subject_test.txt")
+f_codebook("*test\\X_test.txt"," \n")
+f_codebook("*test\\Y_test.txt"," \n")
+f_codebook("*test\\Subject_test.txt"," \n")
 
 
 activity_labels<-fread(input =".\\data\\UCI HAR Dataset\\activity_labels.txt",header=F)
@@ -109,8 +143,8 @@ subject_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\subject_test.txt",he
 # ncol(X_train)
 # ncol(X_test)
 
-f_codebook("Get the column names for the X(train and test) files, matching with features file")
-f_codebook("Note: The 'V' was removed from the column  names before matching")
+f_codebook("Get the column names for the X(train and test) files, matching with features file"," \n")
+f_codebook("*Note: The 'V' was removed from the column  names before matching"," \n")
 
 names(X_train)<-
 features[match(
@@ -126,21 +160,21 @@ names(X_test)<-
     ,V2]
 
 
-f_codebook("Setting the Y files column names to 'Target'")
+f_codebook("* Setting the Y files column names to 'Target'"," \n")
 names(Y_train)<-"Target"
 names(Y_test)<-"Target"
 
 
-f_codebook("Binding the train/test data sets (X,Y,Subject) into a single data set")
+f_codebook("* Binding the train/test data sets (X,Y,Subject) into a single data set"," \n")
 f_codebook("Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from ")
 train<-cbind(X_train,Y_train,Subject=subject_train$V1,aux_source=c("Train"))
 test<-cbind(X_test,Y_test,Subject=subject_test$V1,aux_source=c("Test"))
 
-f_codebook("Binding the train/test full data sets into a single data set (dt)")
+f_codebook("* Binding the train/test full data sets into a single data set (dt)")
 dt<-rbind(train,test)
 # table(full[,aux_source])
 
-f_codebook("Store the dt's colum names into a vector names aux_names")
+f_codebook("* Store the dt's colum names into a vector names aux_names")
 aux_names<-names(dt)
 # table(dt$Target)
 
@@ -149,40 +183,45 @@ aux_names<-names(dt)
 #
 # grep("[a-b]|[x-z]", letters)
 
-f_codebook("Getting a vector with the colum names containing mean() or std() ")
+f_codebook("* Getting a vector with the colum names containing mean() or std() ")
 mean_std_features<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names,ignore.case  =T)]
 
-f_codebook("Create a column names Target_activity containing the activity descriptions")
+f_codebook("* Create a column names Target_activity containing the activity descriptions")
 dt$Target_activity<-activity_labels[match (dt$Target,activity_labels$V1),V2]
 
-f_codebook("Getting a vector with columns names of interest")
+f_codebook("* Getting a vector with columns names of interest")
 interest_features<-c(mean_std_features,"Target_activity","Subject")
 
-f_codebook("Creating a nesw data set,dt_2, containing only the columns of interest")
+f_codebook("* Creating a nesw data set,dt_2, containing only the columns of interest")
 dt_2<-dt[,interest_features,with=FALSE]
 
 # names(dt)
 # names(dt_2)
 
-f_codebook("Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a nes column for the new column names ('new')")
+f_codebook("* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a nes column for the new column names ('new')")
 
 aux_names_2<-data.frame(cbind(actual=names(dt_2),new=names(dt_2)))
 aux_names_2$actual<-as.character(aux_names_2$actual)
 aux_names_2$new<-as.character(aux_names_2$new)
 
 
-f_codebook("Changing the column names according with the folowing set of rules:")
-f_codebook("")
-f_codebook("Start with t-->Time")
-f_codebook("Start with f-->Frequency")
-f_codebook("acc-->Accelerometer")
-f_codebook("Gyro-->Gyroscope")
-f_codebook("BodyBody-->Body")
-f_codebook("'-'-->''")
-f_codebook("mean-->Mean")
-f_codebook("std-->Std")
-f_codebook("'-'-->''")
-f_codebook("'()'-->''")
+f_codebook("* Changing the column names according with the folowing set of rules:\n")
+
+
+f_codebook("### Repace applied to column names\n")
+f_codebook("actual       | new")
+f_codebook("--------------------|------------")
+f_codebook("Start with 't'           | 'Time'")
+f_codebook("Start with 'f'      | 'Frequency'")
+f_codebook("'acc'     | 'Accelerometer'")
+f_codebook("'Gyro'     | 'Gyroscope'")
+f_codebook("'BodyBody'     | 'Body'")
+f_codebook("'mean'     | Mean")
+f_codebook("'std'     | Std")
+f_codebook("'-'     | ''")
+f_codebook("'()'     | ''")
+
+
 f_codebook("")
 
 
@@ -199,7 +238,7 @@ aux_names_2$new<-gsub("\\(\\)","",aux_names_2$new)
 aux_names_2$new
 
 
-f_codebook("Changing the column names according with the rules above")
+f_codebook("* Changing the column names according with the rules above")
 names(dt_2)<-aux_names_2[match(names(dt_2),aux_names_2$actual),"new"]
 
 
@@ -215,27 +254,41 @@ names(dt_2)<-aux_names_2[match(names(dt_2),aux_names_2$actual),"new"]
 #      )  
 #      ]
 
-f_codebook("Identifying the coluns to be aggregated and stores their names in a vector called 'colstoagg' ")
+f_codebook("* Identifying the coluns to be aggregated and stores their names in a vector called 'colstoagg' ")
 
 colstoagg<-grep("Mean|Std",names(dt_2),value = T)
 
-f_codebook("Calculating the mean for each variable stores in the vector 'colstoagg' ans tore the result in the   'aux_summary' data set")
+f_codebook("* Calculating the mean for each variable stores in the vector 'colstoagg' ans tore the result in the   'aux_summary' data set")
 
 aux_summary<-dt_2[,lapply(.SD,mean),by=c("Target_activity","Subject")]
 # dt_resumo<-dt_2[,lapply(.SD,mean,.SDCols=colstoagg),by=c("Target_activity","Subject")]
 
-f_codebook("Write the data set 'aux_summary' into the 'TidyDataSet.txt' file ")
+f_codebook("* Write the data set 'aux_summary' into the 'TidyDataSet.txt' file ")
 write.table(x=aux_summary,file="TidyDataSet.txt",row.names = FALSE)
 
 
 ##Checking if the file is readable as we expect
-f_codebook("Check if the 'TidyDataSet.txt' file exists and is readable")
+f_codebook("* Check if the 'TidyDataSet.txt' file exists and is readable")
 check_file<-read.table("TidyDataSet.txt",header = T)
-f_codebook("Check if the 'TidyDataSet.txt'  has  the expected structure, calling the head function ")
+f_codebook("* Check if the 'TidyDataSet.txt'  has  the expected structure, calling the head function ")
 head(check_file)
 
 # names(aux_summary)
 
+
+
+f_codebook("* Final columns: \n")
+f_codebook("Variable name       | Desription")
+f_codebook("--------------------|------------")
+
+
+f_codebook("* key columns: \n")
+f_codebook("Variable name       | Desription")
+f_codebook("--------------------|------------")
+
+f_codebook("* Non Key columns:\n ")
+f_codebook("Variable name       | Desription")
+f_codebook("--------------------|------------")
 
 # aux_names_2[grep("^t",aux_names_2)]
 # 
@@ -258,3 +311,9 @@ head(check_file)
 # a<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names)]
 # b<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names)]
 
+github_path<-"C:\\Users\\nmota\\Documents\\Dropbox\\Data Mining\\GitHub\\GitHub\\Gitub-Getting-and-cleaning-data-project-assignement"
+
+file.copy(from =  ".\\CodeBook.md", to =paste0( github_path, "\\CodeBook.md"),overwrite = TRUE )
+file.copy(from =  ".\\README.md", to =paste0( github_path, "\\README.md"),overwrite = TRUE )
+file.copy(from =  ".\\TidyDataSet.txt", to =paste0( github_path, "\\TidyDataSet.txt"),overwrite = TRUE )
+file.copy(from =  ".\\run_analysis.R", to =paste0( github_path, "\\run_analysis.R"),overwrite = TRUE )
