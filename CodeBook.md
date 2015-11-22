@@ -1,5 +1,5 @@
 # Code Book for the script 'run_analysis.R'
-Generated 2015-11-22 01:50:12 during the script excution
+Generated 2015-11-22 01:54:06 during the script excution
 
 ## Actions performed on data:
 
@@ -50,3 +50,15 @@ Start with 'f'      | 'Frequency'
 * Write the data set 'aux_summary' into the 'TidyDataSet.txt' file 
 * Check if the 'TidyDataSet.txt' file exists and is readable
 * Check if the 'TidyDataSet.txt'  has  the expected structure, calling the head function 
+* Final columns: 
+
+Variable name       | Desription
+--------------------|------------
+* key columns: 
+
+Variable name       | Desription
+--------------------|------------
+* Non Key columns:
+ 
+Variable name       | Desription
+--------------------|------------
