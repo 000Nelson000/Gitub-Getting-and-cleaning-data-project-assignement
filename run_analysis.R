@@ -94,11 +94,9 @@ f_codebook("* activity_labels.txt")
 f_codebook("* features.txt")
 f_codebook("* features_info.txt")
 f_codebook("* README.txt")
-
 f_codebook("* train\\X_train.txt")
 f_codebook("* train\\Y_train.txt")
 f_codebook("* train\\Subject_train.txt")
-
 f_codebook("* test\\X_test.txt")
 f_codebook("* test\\Y_test.txt")
 f_codebook("* test\\Subject_test.txt")
@@ -144,7 +142,7 @@ subject_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\subject_test.txt",he
 # ncol(X_test)
 
 f_codebook("Get the column names for the X(train and test) files, matching with features file"," \n")
-f_codebook("*Note: The 'V' was removed from the column  names before matching"," \n")
+f_codebook("*   Note: The 'V' was removed from the column  names before matching"," \n")
 
 names(X_train)<-
 features[match(
@@ -166,13 +164,14 @@ names(Y_test)<-"Target"
 
 
 f_codebook("* Binding the train/test data sets (X,Y,Subject) into a single data set"," \n")
-f_codebook("Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from ")
+f_codebook("*   Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from ")
 train<-cbind(X_train,Y_train,Subject=subject_train$V1,aux_source=c("Train"))
 test<-cbind(X_test,Y_test,Subject=subject_test$V1,aux_source=c("Test"))
 
 f_codebook("* Binding the train/test full data sets into a single data set (dt)")
 dt<-rbind(train,test)
 # table(full[,aux_source])
+f_codebook("*  `dt_2` data set:", nrow(dt)," x " ncol(dt)) 
 
 f_codebook("* Store the dt's colum names into a vector names aux_names")
 aux_names<-names(dt)
@@ -183,8 +182,10 @@ aux_names<-names(dt)
 #
 # grep("[a-b]|[x-z]", letters)
 
-f_codebook("* Getting a vector with the colum names containing mean() or std() ")
+
 mean_std_features<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names,ignore.case  =T)]
+
+f_codebook("* Getting a vector with the colum names containing mean() or std() :", length(mean_std_features)," features")
 
 f_codebook("* Create a column names Target_activity containing the activity descriptions")
 dt$Target_activity<-activity_labels[match (dt$Target,activity_labels$V1),V2]
@@ -208,7 +209,7 @@ dt$Target_activity<-activity_labels[match (dt$Target,activity_labels$V1),V2]
 f_codebook("* Getting a vector with columns names of interest")
 interest_features<-c(mean_std_features,"Target_activity","Subject")
 
-f_codebook("* Creating a nesw data set,dt_2, containing only the columns of interest")
+f_codebook("* Creating a new data set,dt_2, containing only the columns of interest : ", length,(interest_features), " features ,including target and subject")
 dt_2<-dt[,interest_features,with=FALSE]
 
 
@@ -234,6 +235,8 @@ dt_2<-dt[,interest_features,with=FALSE]
 # names(dt_2)
 
 f_codebook("* Getting a data frame with the original ('actual') colum names of the dt_2 data set, including  a new column for the new column names ('new')") 
+f_codebook("*  `dt_2` data set:" ,nrow(dt_2)," x " ncol(dt_2)) 
+
 
 aux_names_2<-data.frame(cbind(actual=names(dt_2),new=names(dt_2)))
 aux_names_2$actual<-as.character(aux_names_2$actual)
