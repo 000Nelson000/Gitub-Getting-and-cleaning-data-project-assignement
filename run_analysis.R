@@ -11,17 +11,6 @@
 
 ###Note: f_codebook calls should be interpreed as comments: These functon calls ar suposed to build the coodbook dynmically 
 
-
-cat("\14")
-setwd("C:\\Users\\nmota\\Documents\\Dropbox\\Data Mining\\R\\Coursera  - Getting and cleaning data\\Project")
-      
-##\\UCI HAR Dataset")
-# getwd()
-# dir()
-# dir(".\\data\\UCI HAR Dataset\\train")
-# dir(".\\data\\UCI HAR Dataset\\test")
-
-
 ##path for the md file 
 CodebookFilePath<- ".\\CodeBook.md"
 ##Fuction that writes in a specific md file, each time we call it.
@@ -45,9 +34,9 @@ f_codebook("Downlaod zip file` ",zip_file_url, "` to the working directory if va
 force_overwrite<-FALSE
 ##If TRUE the zip file will be downloaded
 f_codebook("Extract the content of the zip file  `",zip_file_url,  "`to the folder" ,data_path, "`,if flag_extract_data_from_zip_file=TRUE")
-flag_download_zip_file<-FALSE
+flag_download_zip_file<-TRUE
 ## IF TRUE the content of th zip file will be extracted
-flag_extract_data_from_zip_file<-FALSE
+flag_extract_data_from_zip_file<-TRUE
 
 
 f_codebook("Drop and recreate the destination folder if  variable `force_overwrite`=TRUE")
@@ -118,28 +107,6 @@ X_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\X_test.txt",header=F)
 Y_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\Y_test.txt",header=F)
 subject_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\subject_test.txt",header=F)
 
-# names(X_test)
-
-
-
-
-
-# feature_match<-data.frame(cbind(
-#           var=names(X_test)
-#           ,v=NA
-#           )
-#           )
-
-
-# feature_match$v<-as.integer(gsub("V","",feature_match$var))
-# feature_match$var<-as.character(feature_match$var)
-# feature_match$var_name<-features[match(feature_match$v,features$V1),V2]
-# 
-# head(feature_match)
-# head(features)
-# nrow(features)
-# ncol(X_train)
-# ncol(X_test)
 
 f_codebook("Get the column names for the X(train and test) files, matching with features file"," \n")
 f_codebook("*   Note: The `V` was removed from the column  names before matching"," \n")
@@ -284,16 +251,6 @@ names(dt_2)<-aux_names_2[match(names(dt_2),aux_names_2$actual),"new"]
 
 
 
-# dt_resumo<-
-#   dt_2[,
-#      list(
-#        N=.N
-#        ,mean(.SD)
-#      )
-#      ,by=list(
-#        Target_activity,Subject
-#      )  
-#      ]
 
 f_codebook("* Identifying the coluns to be aggregated and stores their names in a vector called `colstoagg`")
 
@@ -311,7 +268,7 @@ write.table(x=aux_summary,file="TidyDataSet.txt",row.names = FALSE)
 ##Checking if the file is readable as we expect
 f_codebook("* Check if the `TidyDataSet.txt` file exists and is readable")
 check_file<-read.table("TidyDataSet.txt",header = T)
-f_codebook("* Check if the `TidyDataSet.txt  `has  the expected structure, calling the head function ")
+f_codebook("* Check if the `TidyDataSet.txt` has  the expected structure, calling the head function ")
 head(check_file)
 
 # names(aux_summary)
@@ -323,8 +280,6 @@ f_codebook("Variable name       | Desription")
 f_codebook("--------------------|------------")
 
 
-# aux_summary_cols<-names(aux_summary)
-# aux_summary_cols<-gsub('"','',aux_summary_cols)
 
 for (i in 1:length(names(aux_summary))){
 f_codebook(
@@ -336,9 +291,3 @@ f_codebook(
 }
 
 
-github_path<-"C:\\Users\\nmota\\Documents\\Dropbox\\Data Mining\\GitHub\\GitHub\\Gitub-Getting-and-cleaning-data-project-assignement"
-
-file.copy(from =  ".\\CodeBook.md", to =paste0( github_path, "\\CodeBook.md"),overwrite = TRUE )
-file.copy(from =  ".\\README.md", to =paste0( github_path, "\\README.md"),overwrite = TRUE )
-file.copy(from =  ".\\TidyDataSet.txt", to =paste0( github_path, "\\TidyDataSet.txt"),overwrite = TRUE )
-file.copy(from =  ".\\run_analysis.R", to =paste0( github_path, "\\run_analysis.R"),overwrite = TRUE )
