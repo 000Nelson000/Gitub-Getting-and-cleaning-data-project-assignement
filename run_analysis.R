@@ -29,7 +29,7 @@ f_codebook <- function(...){
   cat(..., "\n",file=CodebookFilePath,append=TRUE, sep="")
 }
 
-f_codebook("# Code Book for the script 'run_analysis.R'")
+f_codebook("# Code Book for the script `run_analysis.R`")
 f_codebook("Generated ",as.character(Sys.time())," during the script excution")
 f_codebook("") 
 
@@ -41,7 +41,7 @@ zip_file_destination<-"data.zip"
 data_path<-".\\data"
 
 #IF TRUE the directory will be deleted an recreated
-f_codebook("Downlaod zip file to the working directory if flag_download_zip_file =TRUE")
+f_codebook("Downlaod zip file` ",zip_file_url, "` to the working directory if variable `flag_download_zip_file` =TRUE")
 force_overwrite<-FALSE
 ##If TRUE the zip file will be downloaded
 f_codebook("Extract the content of the zip file  `",zip_file_url,  "`to the folder" ,data_path, "`,if flag_extract_data_from_zip_file=TRUE")
@@ -50,7 +50,7 @@ flag_download_zip_file<-FALSE
 flag_extract_data_from_zip_file<-FALSE
 
 
-f_codebook("Drop and recreate the dstination folder if force_overwrite=TRUE")
+f_codebook("Drop and recreate the destination folder if  variable `force_overwrite`=TRUE")
 if(!file.exists(data_path) & force_overwrite){unlink(data_path,recursive=TRUE)}
 if(!file.exists(data_path)){
     dir.create(data_path)
@@ -142,7 +142,7 @@ subject_test<-fread(input =".\\data\\UCI HAR Dataset\\test\\subject_test.txt",he
 # ncol(X_test)
 
 f_codebook("Get the column names for the X(train and test) files, matching with features file"," \n")
-f_codebook("*   Note: The 'V' was removed from the column  names before matching"," \n")
+f_codebook("*   Note: The `V` was removed from the column  names before matching"," \n")
 
 names(X_train)<-
 features[match(
@@ -158,22 +158,25 @@ names(X_test)<-
     ,V2]
 
 
-f_codebook("* Setting the Y files column names to 'Target'"," \n")
+f_codebook("* Setting the Y files column names to `Target`"," \n")
 names(Y_train)<-"Target"
 names(Y_test)<-"Target"
 
 
-f_codebook("* Binding the train/test data sets (X,Y,Subject) into a single data set"," \n")
-f_codebook("*   Note: A column names aux_source (equal to 'train' or 'test') was included so we can identify where each row came from ")
-train<-cbind(X_train,Y_train,Subject=subject_train$V1,aux_source=c("Train"))
+f_codebook("* Binding the train data sets (X,Y,Subject) into a single data set named `train`"," \n")
+train<-cbind
+f_codebook("* Binding the train/test data sets (X,Y,Subject) into a single data set named `test`"," \n")
 test<-cbind(X_test,Y_test,Subject=subject_test$V1,aux_source=c("Test"))
 
-f_codebook("* Binding the train/test full data sets into a single data set (dt)")
+
+f_codebook("*   Note: A new column `aux_source` (equal to 'train' or 'test') was included so we can identify where each row came from ")
+
+f_codebook("* Binding the train/test full data sets into a single data set names `dt`")
 dt<-rbind(train,test)
 # table(full[,aux_source])
-f_codebook("*  `dt_2` data set:", nrow(dt)," x " ,ncol(dt)) 
+f_codebook("*  `dt` data set:", nrow(dt)," x " ,ncol(dt)) 
 
-f_codebook("* Store the dt's colum names into a vector names aux_names")
+f_codebook("* Store the `dt` colum names into a vector names `aux_names`")
 aux_names<-names(dt)
 # table(dt$Target)
 
@@ -185,9 +188,9 @@ aux_names<-names(dt)
 
 mean_std_features<-aux_names[grep("mean\\(\\)|std\\(\\)" ,aux_names,ignore.case  =T)]
 
-f_codebook("* Getting a vector with the colum names containing mean() or std() :", length(mean_std_features)," features")
+f_codebook("* Getting a vector with the colum names containing `mean()` or `std()` :", length(mean_std_features)," features")
 
-f_codebook("* Create a column names Target_activity containing the activity descriptions")
+f_codebook("* Create a column names `Target_activity` containing the activity description")
 dt$Target_activity<-activity_labels[match (dt$Target,activity_labels$V1),V2]
 
 
@@ -292,23 +295,23 @@ names(dt_2)<-aux_names_2[match(names(dt_2),aux_names_2$actual),"new"]
 #      )  
 #      ]
 
-f_codebook("* Identifying the coluns to be aggregated and stores their names in a vector called 'colstoagg' ")
+f_codebook("* Identifying the coluns to be aggregated and stores their names in a vector called `colstoagg`")
 
 colstoagg<-grep("Mean|Std",names(dt_2),value = T)
 
-f_codebook("* Calculating the mean for each variable stores in the vector 'colstoagg' ans tore the result in the   'aux_summary' data set")
+f_codebook("* Calculating the mean for each variable stores in the vector `colstoagg`ans tore the result in the   `aux_summary` data set")
 
 aux_summary<-dt_2[,lapply(.SD,mean),by=c("Target_activity","Subject")]
 # dt_resumo<-dt_2[,lapply(.SD,mean,.SDCols=colstoagg),by=c("Target_activity","Subject")]
 
-f_codebook("* Write the data set 'aux_summary' into the 'TidyDataSet.txt' file  - ",nrow(aux_summary)," x ",ncol(aux_summary))
+f_codebook("* Write the data set `aux_summary` into the `TidyDataSet.txt` file  - ",nrow(aux_summary)," x ",ncol(aux_summary))
 write.table(x=aux_summary,file="TidyDataSet.txt",row.names = FALSE)
 
 
 ##Checking if the file is readable as we expect
-f_codebook("* Check if the 'TidyDataSet.txt' file exists and is readable")
+f_codebook("* Check if the `TidyDataSet.txt` file exists and is readable")
 check_file<-read.table("TidyDataSet.txt",header = T)
-f_codebook("* Check if the 'TidyDataSet.txt'  has  the expected structure, calling the head function ")
+f_codebook("* Check if the `TidyDataSet.txt  `has  the expected structure, calling the head function ")
 head(check_file)
 
 # names(aux_summary)

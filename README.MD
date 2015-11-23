@@ -19,3 +19,19 @@ You should create one R script called run_analysis.R that does the following.
 
 
 
+Previous notes:
+*In the script run_analysis.R there are a function named f_codebook, that is called multiple times in order to create dynamically the codebook.md file.
+Each function call cal be interpreted like comments.
+
+The actions performed on data include :
+*merge the traing files (X and Y)
+*merge the test files (X and Y)
+*merge the training and test fies into a single one named dt
+*add column names to the resulting datasets, according to the fatures.txt file
+*select the varible names containig 'mean()' or 'std()'
+*update the column names in order to be undestandable
+*add activity names in order to ber undestandable, acording to the file activity_labels.txt
+*add subject id , according to the file subject.txt
+
+PLEASE SEE CODEBOOK.MD FILE FOR MORE DETAIL
+
